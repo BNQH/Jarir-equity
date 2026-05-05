@@ -1,0 +1,1046 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Jarir Marketing Company – Equity Research Report</title>
+<link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&family=Source+Sans+3:wght@300;400;600;700&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Source Sans 3', sans-serif;
+    font-size: 9.5pt;
+    color: #1a1a2e;
+    background: #f4f5f7;
+    line-height: 1.5;
+  }
+
+  .page {
+    width: 210mm;
+    min-height: 297mm;
+    background: #fff;
+    margin: 0 auto;
+    padding: 0;
+    box-shadow: 0 2px 20px rgba(0,0,0,0.12);
+  }
+
+  /* ─── HEADER ─── */
+  .header {
+    background: #0a1f5c;
+    color: #fff;
+    padding: 18px 24px 14px;
+    position: relative;
+    overflow: hidden;
+  }
+  .header::after {
+    content: '';
+    position: absolute;
+    right: -30px; top: -30px;
+    width: 160px; height: 160px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.04);
+  }
+  .header-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 10px;
+  }
+  .header-company h1 {
+    font-family: 'Merriweather', serif;
+    font-size: 17pt;
+    font-weight: 700;
+    letter-spacing: -0.3px;
+  }
+  .header-company .sub {
+    font-size: 8.5pt;
+    color: #a8c4e8;
+    margin-top: 2px;
+    letter-spacing: 0.8px;
+    text-transform: uppercase;
+  }
+  .rec-box {
+    text-align: right;
+  }
+  .rec-label {
+    font-size: 7.5pt;
+    color: #a8c4e8;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+  .rec-badge {
+    display: inline-block;
+    background: #f5a623;
+    color: #1a1a2e;
+    font-size: 13pt;
+    font-weight: 700;
+    padding: 3px 16px;
+    border-radius: 3px;
+    margin-top: 2px;
+    letter-spacing: 1px;
+  }
+  .header-stats {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 0;
+    border-top: 1px solid rgba(255,255,255,0.12);
+    padding-top: 10px;
+  }
+  .hstat {
+    padding: 4px 0;
+    border-right: 1px solid rgba(255,255,255,0.1);
+    padding-right: 14px;
+    margin-right: 14px;
+  }
+  .hstat:last-child { border-right: none; }
+  .hstat-label { font-size: 7pt; color: #a8c4e8; text-transform: uppercase; letter-spacing: 0.8px; }
+  .hstat-val { font-size: 11.5pt; font-weight: 700; margin-top: 1px; }
+  .hstat-val.up { color: #5ee8a0; }
+  .hstat-val.neutral { color: #f5a623; }
+
+  /* ─── CONTENT ─── */
+  .content { padding: 16px 24px; }
+
+  .section { margin-bottom: 18px; }
+  .section-title {
+    font-size: 8pt;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    color: #0a1f5c;
+    border-bottom: 2px solid #0a1f5c;
+    padding-bottom: 3px;
+    margin-bottom: 10px;
+  }
+
+  /* ─── GRID LAYOUTS ─── */
+  .col-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  .col-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; }
+  .col-65-35 { display: grid; grid-template-columns: 65fr 35fr; gap: 14px; }
+  .col-55-45 { display: grid; grid-template-columns: 55fr 45fr; gap: 14px; }
+
+  /* ─── CARDS ─── */
+  .card {
+    background: #fff;
+    border: 0.75px solid #dde1ea;
+    border-radius: 5px;
+    padding: 11px 13px;
+  }
+  .card-blue {
+    background: #eef2fb;
+    border: 0.75px solid #c2cff0;
+    border-radius: 5px;
+    padding: 11px 13px;
+  }
+  .card-gold {
+    background: #fdf6e3;
+    border: 0.75px solid #e8c97a;
+    border-radius: 5px;
+    padding: 11px 13px;
+  }
+  .card-green {
+    background: #edfbf4;
+    border: 0.75px solid #7fd4a8;
+    border-radius: 5px;
+    padding: 11px 13px;
+  }
+  .card-red {
+    background: #fdf0ef;
+    border: 0.75px solid #f0a09a;
+    border-radius: 5px;
+    padding: 11px 13px;
+  }
+  .card-title {
+    font-size: 7.5pt;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    color: #4a5568;
+    margin-bottom: 7px;
+  }
+
+  /* ─── METRIC PILLS ─── */
+  .metric-row { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 8px; }
+  .metric-pill {
+    text-align: center;
+    flex: 1;
+    min-width: 80px;
+  }
+  .metric-pill .val { font-size: 14pt; font-weight: 700; color: #0a1f5c; }
+  .metric-pill .lbl { font-size: 7pt; color: #718096; text-transform: uppercase; letter-spacing: 0.6px; }
+
+  /* ─── TABLES ─── */
+  table { width: 100%; border-collapse: collapse; font-size: 8pt; }
+  th {
+    background: #0a1f5c;
+    color: #fff;
+    padding: 5px 7px;
+    text-align: left;
+    font-weight: 600;
+    font-size: 7.5pt;
+    letter-spacing: 0.3px;
+  }
+  th.right { text-align: right; }
+  td { padding: 4px 7px; border-bottom: 0.5px solid #edf0f5; }
+  td.right { text-align: right; }
+  tr:nth-child(even) td { background: #f8f9fc; }
+  tr:last-child td { border-bottom: none; }
+  .tfoot td { background: #eef2fb; font-weight: 700; border-top: 1.5px solid #0a1f5c; }
+
+  /* ─── THESIS BULLETS ─── */
+  .thesis-item {
+    display: flex;
+    gap: 10px;
+    align-items: flex-start;
+    margin-bottom: 8px;
+  }
+  .thesis-num {
+    min-width: 20px;
+    height: 20px;
+    background: #0a1f5c;
+    color: #fff;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 8pt;
+    font-weight: 700;
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+  .thesis-text { font-size: 8.5pt; color: #2d3748; line-height: 1.5; }
+  .thesis-text strong { color: #0a1f5c; }
+
+  /* ─── CATALYST / RISK ITEMS ─── */
+  .cat-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    padding: 5px 0;
+    border-bottom: 0.5px solid #edf0f5;
+  }
+  .cat-item:last-child { border-bottom: none; }
+  .cat-dot {
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    margin-top: 4px;
+    flex-shrink: 0;
+  }
+  .cat-dot.high { background: #2e7d32; }
+  .cat-dot.med  { background: #f5a623; }
+  .cat-dot.low  { background: #90a4ae; }
+  .cat-dot.risk-h { background: #c62828; }
+  .cat-dot.risk-m { background: #ef6c00; }
+  .cat-dot.risk-l { background: #f5a623; }
+  .cat-title { font-size: 8pt; font-weight: 700; color: #1a1a2e; }
+  .cat-desc { font-size: 7.5pt; color: #4a5568; line-height: 1.4; }
+
+  /* ─── VALUATION FOOTBALL FIELD ─── */
+  .ff-row { display: flex; align-items: center; gap: 6px; margin-bottom: 5px; }
+  .ff-label { font-size: 7.5pt; color: #4a5568; min-width: 80px; }
+  .ff-bar-wrap { flex: 1; position: relative; height: 14px; background: #edf0f5; border-radius: 7px; }
+  .ff-bar {
+    position: absolute;
+    top: 0; height: 100%;
+    border-radius: 7px;
+    display: flex; align-items: center; justify-content: flex-end;
+    padding-right: 4px;
+    font-size: 7pt; font-weight: 700; color: #fff;
+  }
+  .ff-current {
+    position: absolute;
+    top: -3px; height: 20px;
+    width: 2px; background: #c62828;
+    border-radius: 1px;
+  }
+  .ff-current::before {
+    content: '';
+    position: absolute;
+    top: -4px; left: -4px;
+    width: 10px; height: 10px;
+    background: #c62828;
+    border-radius: 50%;
+  }
+
+  /* ─── CHART WRAPPERS ─── */
+  .chart-wrap { position: relative; width: 100%; }
+
+  /* ─── MARKET SNAPSHOT TABLE ─── */
+  .snap-table { width: 100%; font-size: 7.5pt; }
+  .snap-table td { padding: 4px 6px; border-bottom: 0.5px solid #edf0f5; }
+  .snap-table td:first-child { color: #718096; font-weight: 600; }
+  .snap-table td:last-child { font-weight: 700; color: #1a1a2e; text-align: right; }
+  .up-tag { color: #2e7d32; }
+  .dn-tag { color: #c62828; }
+
+  /* ─── DIVIDER ─── */
+  .divider { border: none; border-top: 1px solid #edf0f5; margin: 14px 0; }
+
+  /* ─── CONCLUSION BOX ─── */
+  .conclusion-box {
+    background: #0a1f5c;
+    color: #fff;
+    border-radius: 5px;
+    padding: 14px 16px;
+  }
+  .conclusion-box p { font-size: 8.5pt; line-height: 1.6; color: #cbd5e8; }
+  .conclusion-box strong { color: #fff; }
+
+  /* ─── FOOTER ─── */
+  .footer {
+    background: #f0f3fa;
+    border-top: 1.5px solid #0a1f5c;
+    padding: 8px 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 7pt;
+    color: #718096;
+  }
+  .disclaimer {
+    background: #f9fafb;
+    border-top: 0.5px solid #e2e8f0;
+    padding: 8px 24px;
+    font-size: 6.5pt;
+    color: #a0aec0;
+    line-height: 1.5;
+  }
+
+  /* ─── PRINT ─── */
+  @media print {
+    body { background: #fff; }
+    .page { box-shadow: none; margin: 0; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+<!-- ══════════════ HEADER ══════════════ -->
+<div class="header">
+  <div class="header-top">
+    <div class="header-company">
+      <h1>Jarir Marketing Company</h1>
+      <div class="sub">TADAWUL: 4190 &nbsp;|&nbsp; Consumer Discretionary – Retail &nbsp;|&nbsp; Saudi Arabia &nbsp;|&nbsp; Report Date: May 2026</div>
+    </div>
+    <div class="rec-box">
+      <div class="rec-label">Recommendation</div>
+      <div class="rec-badge">HOLD</div>
+    </div>
+  </div>
+  <div class="header-stats">
+    <div class="hstat">
+      <div class="hstat-label">Current Price</div>
+      <div class="hstat-val">SAR 14.82</div>
+    </div>
+    <div class="hstat">
+      <div class="hstat-label">Target Price</div>
+      <div class="hstat-val">SAR 15.10</div>
+    </div>
+    <div class="hstat">
+      <div class="hstat-label">Upside / Downside</div>
+      <div class="hstat-val up">+1.9%</div>
+    </div>
+    <div class="hstat">
+      <div class="hstat-label">Market Cap</div>
+      <div class="hstat-val">SAR 17.8 B</div>
+    </div>
+    <div class="hstat">
+      <div class="hstat-label">Div. Yield (2025A)</div>
+      <div class="hstat-val up">6.96%</div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════ CONTENT ══════════════ -->
+<div class="content">
+
+<!-- ─── 1. MARKET OVERVIEW ─── -->
+<div class="section">
+  <div class="section-title">1. Market &amp; Stock Overview</div>
+  <div class="col-65-35">
+    <div>
+      <p style="font-size:8.5pt; color:#2d3748; line-height:1.6; margin-bottom:8px;">
+        The Saudi Exchange (Tadawul) experienced a challenging 2025. The TASI index declined roughly <strong>12–14%</strong> over the twelve-month period ending December 2025, weighed down by lower oil price expectations, geopolitical tensions, and a slowdown in global risk appetite. By early 2026, however, the market staged a recovery, with TASI climbing approximately <strong>+6.6% year-to-date</strong> as of May 2026, supported by renewed confidence in Vision 2030 execution and a rebound in consumer activity.
+      </p>
+      <p style="font-size:8.5pt; color:#2d3748; line-height:1.6; margin-bottom:8px;">
+        Against this backdrop, <strong>Jarir significantly outperformed TASI</strong>. The stock bottomed at SAR 12.00 in June 2025 and rebounded strongly to SAR 15.50 by April 2026, a 52-week gain of approximately <strong>+17.25%</strong>—far ahead of the broader index. This reflects Jarir's defensive characteristics: a high dividend yield and a relatively stable earnings profile that attracted income-seeking investors during market volatility.
+      </p>
+      <p style="font-size:8.5pt; color:#2d3748; line-height:1.6;">
+        Key macroeconomic drivers for Jarir include Vision 2030-led demographic and infrastructure spending, rising smartphone and electronics adoption, strong back-to-school demand, and gradual growth in e-commerce. Saudi Arabia's population skews young, supporting durable demand for Jarir's core product categories.
+      </p>
+    </div>
+    <div>
+      <div class="card-blue">
+        <div class="card-title">Market Snapshot</div>
+        <table class="snap-table">
+          <tr><td>TASI (YTD 2026)</td><td class="up-tag">+6.6%</td></tr>
+          <tr><td>TASI (2025 return)</td><td class="dn-tag">~−14%</td></tr>
+          <tr><td>Jarir 52W High</td><td>SAR 15.50</td></tr>
+          <tr><td>Jarir 52W Low</td><td>SAR 12.00</td></tr>
+          <tr><td>Jarir YTD 2025</td><td class="up-tag">+15.1%</td></tr>
+          <tr><td>Consumer Spending Trend</td><td>Moderate growth</td></tr>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ─── 2. INVESTMENT SUMMARY ─── -->
+<div class="section">
+  <div class="section-title">2. Investment Summary</div>
+  <div class="col-65-35">
+    <div>
+      <div class="card-gold" style="margin-bottom:10px;">
+        <div class="card-title">Investment Thesis</div>
+        <div class="thesis-item">
+          <div class="thesis-num">1</div>
+          <div class="thesis-text"><strong>Reliable dividend income:</strong> Jarir pays out ~102% of net profit as dividends, offering one of TASI's highest dividend yields at <strong>6.96%</strong> — well above the market average — supported by a debt-free balance sheet and consistently strong free cash flow generation.</div>
+        </div>
+        <div class="thesis-item">
+          <div class="thesis-num">2</div>
+          <div class="thesis-text"><strong>Steady earnings growth:</strong> Revenue grew 7.0% in 2025 to SAR 11.4 billion, and our base-case model projects revenue reaching SAR 12.2 billion in 2026E driven by ongoing branch expansion (80 stores) and healthy per-store productivity.</div>
+        </div>
+        <div class="thesis-item">
+          <div class="thesis-num">3</div>
+          <div class="thesis-text"><strong>Limited near-term upside priced in:</strong> At SAR 14.82, the stock trades close to our blended target of <strong>SAR 15.10</strong> (+1.9% upside), suggesting the current price already reflects most positives. A <strong>HOLD</strong> is appropriate unless the price retreats toward SAR 13–14, offering a more attractive entry point.</div>
+        </div>
+      </div>
+    </div>
+    <div>
+      <div class="card-blue">
+        <div class="card-title">Valuation Summary</div>
+        <table>
+          <tr><th>Method</th><th class="right">Value (SAR)</th><th class="right">Weight</th></tr>
+          <tr><td>DDM</td><td class="right">15.26</td><td class="right">70%</td></tr>
+          <tr><td>Trading Comps</td><td class="right">14.73</td><td class="right">30%</td></tr>
+          <tr class="tfoot"><td>Target Price</td><td class="right">15.10</td><td class="right">100%</td></tr>
+          <tr><td>Current Price</td><td class="right">14.82</td><td class="right"></td></tr>
+          <tr><td style="color:#2e7d32;font-weight:700;">Implied Upside</td><td class="right" style="color:#2e7d32;font-weight:700;">+1.9%</td><td class="right"></td></tr>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ─── 3. COMPANY OVERVIEW ─── -->
+<div class="section">
+  <div class="section-title">3. Company Overview</div>
+  <div class="col-55-45">
+    <div>
+      <p style="font-size:8.5pt; color:#2d3748; line-height:1.6; margin-bottom:8px;">
+        Founded in 1979 and headquartered in Riyadh, <strong>Jarir Marketing Company</strong> is Saudi Arabia's leading retail chain for electronics, books, and office supplies. The company operates through three segments: <strong>Retail Outlets</strong>, <strong>Wholesale</strong>, and <strong>E-Commerce</strong>. As of 2025, Jarir operates <strong>75 showrooms</strong> — 64 in Saudi Arabia and 11 internationally (mainly Egypt and other GCC states), with plans to expand to 80 in 2026.
+      </p>
+      <p style="font-size:8.5pt; color:#2d3748; line-height:1.6;">
+        Jarir's product mix spans smartphones, computers and peripherals, tablets, books, stationery, school and office supplies, and electronics. <strong>Apple products alone account for an estimated 20–25% of revenue</strong>, making the company a key beneficiary of smartphone upgrade cycles. Its e-commerce platform (jarir.com and the Jarir Bookstore App) is growing, adding an additional sales channel that is becoming increasingly important in a competitive landscape. Jarir also holds real estate assets in Saudi Arabia and Egypt.
+      </p>
+    </div>
+    <div>
+      <div class="card">
+        <div class="card-title">Business Model Snapshot</div>
+        <table>
+          <tr><td style="color:#718096;">Founded</td><td class="right">1979 · Listed 2003</td></tr>
+          <tr><td style="color:#718096;">Sector</td><td class="right">Consumer Discretionary</td></tr>
+          <tr><td style="color:#718096;">Stores (2025A)</td><td class="right">75 (64 KSA, 11 Intl.)</td></tr>
+          <tr><td style="color:#718096;">Stores (2026E)</td><td class="right">80 (+5 new)</td></tr>
+          <tr><td style="color:#718096;">Revenue (2025A)</td><td class="right">SAR 11.4 B</td></tr>
+          <tr><td style="color:#718096;">Key segments</td><td class="right">Retail, Wholesale, E-Comm</td></tr>
+          <tr><td style="color:#718096;">Debt position</td><td class="right">Debt-free (FY2025)</td></tr>
+          <tr><td style="color:#718096;">Shares outstanding</td><td class="right">1,200 million</td></tr>
+          <tr><td style="color:#718096;">Revenue mix (Est.)</td><td class="right">Electronics ~60–65%</td></tr>
+          <tr><td style="color:#718096;">Apple share (Est.)</td><td class="right">~20–25% of revenue</td></tr>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ─── 4. FINANCIAL PERFORMANCE ─── -->
+<div class="section">
+  <div class="section-title">4. Financial Performance Analysis</div>
+
+  <!-- Key metrics row -->
+  <div style="display:grid; grid-template-columns:repeat(5,1fr); gap:8px; margin-bottom:12px;">
+    <div class="card" style="text-align:center;">
+      <div style="font-size:13pt; font-weight:700; color:#0a1f5c;">SAR 11.4B</div>
+      <div style="font-size:7pt; color:#718096; text-transform:uppercase; letter-spacing:0.5px;">Revenue 2025</div>
+      <div style="font-size:8pt; color:#2e7d32; margin-top:2px;">+7.0% YoY</div>
+    </div>
+    <div class="card" style="text-align:center;">
+      <div style="font-size:13pt; font-weight:700; color:#0a1f5c;">SAR 1.05B</div>
+      <div style="font-size:7pt; color:#718096; text-transform:uppercase; letter-spacing:0.5px;">Net Income 2025</div>
+      <div style="font-size:8pt; color:#2e7d32; margin-top:2px;">+7.7% YoY</div>
+    </div>
+    <div class="card" style="text-align:center;">
+      <div style="font-size:13pt; font-weight:700; color:#0a1f5c;">12.5%</div>
+      <div style="font-size:7pt; color:#718096; text-transform:uppercase; letter-spacing:0.5px;">Gross Margin</div>
+      <div style="font-size:8pt; color:#718096; margin-top:2px;">Stable vs 2024</div>
+    </div>
+    <div class="card" style="text-align:center;">
+      <div style="font-size:13pt; font-weight:700; color:#0a1f5c;">SAR 0.87</div>
+      <div style="font-size:7pt; color:#718096; text-transform:uppercase; letter-spacing:0.5px;">EPS 2025</div>
+      <div style="font-size:8pt; color:#2e7d32; margin-top:2px;">+7.7% YoY</div>
+    </div>
+    <div class="card" style="text-align:center;">
+      <div style="font-size:13pt; font-weight:700; color:#0a1f5c;">SAR 1.37B</div>
+      <div style="font-size:7pt; color:#718096; text-transform:uppercase; letter-spacing:0.5px;">Free Cash Flow</div>
+      <div style="font-size:8pt; color:#2e7d32; margin-top:2px;">+30.8% YoY</div>
+    </div>
+  </div>
+
+  <div class="col-2" style="margin-bottom:10px;">
+    <!-- Revenue & NI chart -->
+    <div class="card">
+      <div class="card-title">Revenue &amp; Net Income (SAR M)</div>
+      <div style="display:flex; gap:12px; margin-bottom:6px; font-size:7pt; color:#4a5568;">
+        <span><span style="display:inline-block;width:10px;height:10px;background:#0a1f5c;border-radius:2px;"></span> Revenue</span>
+        <span><span style="display:inline-block;width:10px;height:10px;background:#f5a623;border-radius:2px;"></span> Net Income</span>
+      </div>
+      <div class="chart-wrap" style="height:150px;">
+        <canvas id="revChart" role="img" aria-label="Bar chart of Jarir revenue and net income 2021 to 2025">Revenue grew from 9,088M in 2021 to 11,365M in 2025. Net income was relatively stable around 970-1,049M.</canvas>
+      </div>
+    </div>
+    <!-- Margin chart -->
+    <div class="card">
+      <div class="card-title">Margin Trend (%)</div>
+      <div style="display:flex; gap:12px; margin-bottom:6px; font-size:7pt; color:#4a5568;">
+        <span><span style="display:inline-block;width:10px;height:10px;background:#0a1f5c;border-radius:2px;"></span> Gross Margin</span>
+        <span><span style="display:inline-block;width:10px;height:10px;background:#f5a623;border-radius:2px;border:none;" style="border:1.5px dashed #f5a623;background:none;"></span> Net Margin</span>
+      </div>
+      <div class="chart-wrap" style="height:150px;">
+        <canvas id="marginChart" role="img" aria-label="Line chart of gross and net margin 2021 to 2025">Gross margin compressed from 13.5% in 2021 to around 12.5% by 2025. Net margin also declined from 10.9% to 9.2%.</canvas>
+      </div>
+    </div>
+  </div>
+
+  <!-- Financial snapshot table -->
+  <div class="card" style="margin-bottom:10px;">
+    <div class="card-title">Financial Performance Snapshot (SAR M unless stated)</div>
+    <table>
+      <tr>
+        <th>Metric</th>
+        <th class="right">2021A</th>
+        <th class="right">2022A</th>
+        <th class="right">2023A</th>
+        <th class="right">2024A</th>
+        <th class="right">2025A</th>
+      </tr>
+      <tr><td>Revenue</td><td class="right">9,088</td><td class="right">9,392</td><td class="right">10,595</td><td class="right">10,619</td><td class="right">11,365</td></tr>
+      <tr><td>Gross Profit</td><td class="right">1,229</td><td class="right">1,287</td><td class="right">1,276</td><td class="right">1,324</td><td class="right">1,416</td></tr>
+      <tr><td>Operating Income (EBIT)</td><td class="right">961</td><td class="right">962</td><td class="right">973</td><td class="right">977</td><td class="right">1,040</td></tr>
+      <tr><td>Net Income</td><td class="right">992</td><td class="right">970</td><td class="right">973</td><td class="right">974</td><td class="right">1,049</td></tr>
+      <tr><td>EPS (SAR)</td><td class="right">0.83</td><td class="right">0.81</td><td class="right">0.81</td><td class="right">0.81</td><td class="right">0.87</td></tr>
+      <tr><td>DPS (SAR)</td><td class="right">0.75</td><td class="right">0.80</td><td class="right">0.84</td><td class="right">0.83</td><td class="right">0.89</td></tr>
+      <tr><td>Gross Margin</td><td class="right">13.5%</td><td class="right">13.7%</td><td class="right">12.0%</td><td class="right">12.5%</td><td class="right">12.5%</td></tr>
+      <tr><td>Net Margin</td><td class="right">10.9%</td><td class="right">10.3%</td><td class="right">9.2%</td><td class="right">9.2%</td><td class="right">9.2%</td></tr>
+      <tr><td>EBITDA (SAR M)</td><td class="right">1,116</td><td class="right">1,129</td><td class="right">1,155</td><td class="right">1,158</td><td class="right">1,227</td></tr>
+      <tr><td>Operating Cash Flow</td><td class="right">1,428</td><td class="right">999</td><td class="right">689</td><td class="right">1,114</td><td class="right">1,458</td></tr>
+      <tr><td>Free Cash Flow</td><td class="right">1,456</td><td class="right">948</td><td class="right">646</td><td class="right">1,051</td><td class="right">1,374</td></tr>
+      <tr><td>ROE</td><td class="right">56.8%</td><td class="right">54.3%</td><td class="right">54.5%</td><td class="right">55.4%</td><td class="right">59.8%</td></tr>
+      <tr><td>Net Debt / (Net Cash)</td><td class="right">(432)</td><td class="right">(526)</td><td class="right">(45)</td><td class="right">7</td><td class="right">(271)</td></tr>
+    </table>
+  </div>
+
+  <!-- DPS chart -->
+  <div class="col-2">
+    <div class="card">
+      <div class="card-title">Dividend Per Share &amp; Yield Trend</div>
+      <div style="display:flex; gap:12px; margin-bottom:6px; font-size:7pt; color:#4a5568;">
+        <span><span style="display:inline-block;width:10px;height:10px;background:#0a1f5c;border-radius:2px;"></span> DPS (SAR)</span>
+        <span><span style="display:inline-block;width:10px;height:10px;background:#5ee8a0;border-radius:2px;"></span> Div. Yield (%)</span>
+      </div>
+      <div class="chart-wrap" style="height:130px;">
+        <canvas id="dpsChart" role="img" aria-label="Bar and line chart of DPS and dividend yield 2021 to 2025">DPS rose from 0.75 in 2021 to 0.89 in 2025. Dividend yield climbed from 3.8% to 7.0%.</canvas>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-title">Key Ratios</div>
+      <table>
+        <tr><th>Ratio</th><th class="right">2023A</th><th class="right">2024A</th><th class="right">2025A</th></tr>
+        <tr><td>P/E (x)</td><td class="right">19.2x</td><td class="right">15.6x</td><td class="right">14.6x</td></tr>
+        <tr><td>EV/EBITDA (x)</td><td class="right">16.1x</td><td class="right">13.1x</td><td class="right">12.3x</td></tr>
+        <tr><td>Price/Book (x)</td><td class="right">10.6x</td><td class="right">8.7x</td><td class="right">8.7x</td></tr>
+        <tr><td>Dividend Yield</td><td class="right">5.4%</td><td class="right">6.6%</td><td class="right">7.0%</td></tr>
+        <tr><td>Payout Ratio</td><td class="right">103%</td><td class="right">102%</td><td class="right">102%</td></tr>
+        <tr><td>Current Ratio</td><td class="right">1.41x</td><td class="right">1.35x</td><td class="right">1.37x</td></tr>
+        <tr><td>ROE</td><td class="right">54.5%</td><td class="right">55.4%</td><td class="right">59.8%</td></tr>
+      </table>
+    </div>
+  </div>
+</div>
+
+<!-- ─── 5. VALUATION ─── -->
+<div class="section">
+  <div class="section-title">5. Valuation</div>
+  <div class="col-2" style="margin-bottom:10px;">
+
+    <!-- DDM -->
+    <div class="card-blue">
+      <div class="card-title">DDM Valuation (70% Weight)</div>
+      <p style="font-size:8pt; color:#2d3748; margin-bottom:8px; line-height:1.5;">
+        The DDM is the primary valuation method because Jarir has a long and consistent history of paying out substantially all its earnings as dividends (3-year average payout ratio: <strong>102.3%</strong>). Its debt-free balance sheet and high cash conversion make dividends predictable.
+      </p>
+      <table>
+        <tr><th>Assumption</th><th class="right">Value</th></tr>
+        <tr><td>Cost of Equity (Ke)</td><td class="right">9.0%</td></tr>
+        <tr><td>Terminal Growth Rate (g)</td><td class="right">2.5%</td></tr>
+        <tr><td>Avg. Payout Ratio</td><td class="right">102.3%</td></tr>
+        <tr><td>2026E DPS</td><td class="right">SAR 0.953</td></tr>
+        <tr><td>2030E DPS</td><td class="right">SAR 1.096</td></tr>
+        <tr><td>Terminal Value (per share)</td><td class="right">SAR 17.28</td></tr>
+        <tr class="tfoot"><td>DDM Fair Value</td><td class="right">SAR 15.26</td></tr>
+      </table>
+    </div>
+
+    <!-- Comparables -->
+    <div class="card-blue">
+      <div class="card-title">Trading Comparables (30% Weight)</div>
+      <p style="font-size:8pt; color:#2d3748; margin-bottom:8px; line-height:1.5;">
+        Comps serve as a sanity check. Given the limited number of direct listed Saudi retail peers, the analysis benchmarks Jarir against <strong>Extra (EIC)</strong> — the closest publicly listed consumer electronics retailer in Saudi Arabia.
+      </p>
+      <table>
+        <tr><th>Multiple</th><th class="right">Extra</th><th class="right">Jarir</th><th class="right">Implied (SAR)</th><th class="right">Wt</th></tr>
+        <tr><td>EV/Revenue</td><td class="right">1.16x</td><td class="right">1.33x</td><td class="right">14.28</td><td class="right">20%</td></tr>
+        <tr><td>EV/EBITDA</td><td class="right">10.90x</td><td class="right">12.28x</td><td class="right">14.34</td><td class="right">50%</td></tr>
+        <tr><td>P/E</td><td class="right">12.96x</td><td class="right">17.21x</td><td class="right">15.69</td><td class="right">30%</td></tr>
+        <tr class="tfoot"><td colspan="3">Comps Fair Value</td><td class="right">SAR 14.73</td><td class="right">100%</td></tr>
+      </table>
+      <p style="font-size:7.5pt; color:#4a5568; margin-top:6px; line-height:1.4;">
+        <em>Jarir trades at a premium to Extra on most multiples, partially justified by its stronger brand, higher margins, and more established dividend track record.</em>
+      </p>
+    </div>
+  </div>
+
+  <!-- Football field -->
+  <div class="card" style="margin-bottom:10px;">
+    <div class="card-title">Valuation Football Field (SAR per share)</div>
+    <div style="margin-bottom:10px;">
+      <!-- Scale guide -->
+      <div style="display:flex; justify-content:space-between; font-size:7pt; color:#718096; margin-bottom:4px; padding:0 84px 0 84px;">
+        <span>12.0</span><span>13.0</span><span>14.0</span><span>15.0</span><span>16.0</span><span>17.0</span><span>18.0</span>
+      </div>
+
+      <!-- DDM row -->
+      <div class="ff-row">
+        <div class="ff-label">DDM</div>
+        <div class="ff-bar-wrap">
+          <div class="ff-bar" style="left:0%; width:84%; background:#0a1f5c; font-size:7pt;">SAR 15.26</div>
+          <!-- current price marker at ~(14.82-12)/(18-12) = 2.82/6 = 47% -->
+          <div class="ff-current" style="left:47%;"></div>
+        </div>
+      </div>
+
+      <!-- Comps row -->
+      <div class="ff-row" style="margin-top:6px;">
+        <div class="ff-label">Comps (Avg)</div>
+        <div class="ff-bar-wrap">
+          <div class="ff-bar" style="left:0%; width:80%; background:#4a7fc1; font-size:7pt;">SAR 14.73</div>
+          <div class="ff-current" style="left:47%;"></div>
+        </div>
+      </div>
+
+      <!-- EV/EBITDA implied -->
+      <div class="ff-row" style="margin-top:6px;">
+        <div class="ff-label">EV/EBITDA</div>
+        <div class="ff-bar-wrap">
+          <div class="ff-bar" style="left:0%; width:79%; background:#7aa8da; font-size:7pt;">SAR 14.34</div>
+          <div class="ff-current" style="left:47%;"></div>
+        </div>
+      </div>
+
+      <!-- P/E implied -->
+      <div class="ff-row" style="margin-top:6px;">
+        <div class="ff-label">P/E</div>
+        <div class="ff-bar-wrap">
+          <div class="ff-bar" style="left:0%; width:90%; background:#a8caed; font-size:7pt; color:#1a1a2e;">SAR 15.69</div>
+          <div class="ff-current" style="left:47%;"></div>
+        </div>
+      </div>
+
+      <!-- Target price -->
+      <div class="ff-row" style="margin-top:6px;">
+        <div class="ff-label" style="font-weight:700; color:#0a1f5c;">Blended Target</div>
+        <div class="ff-bar-wrap">
+          <div class="ff-bar" style="left:0%; width:85%; background:#f5a623; font-size:7pt; color:#1a1a2e; font-weight:700;">SAR 15.10</div>
+          <div class="ff-current" style="left:47%;"></div>
+        </div>
+      </div>
+
+      <div style="display:flex; align-items:center; gap:6px; margin-top:8px; font-size:7pt; color:#c62828;">
+        <div style="width:10px; height:10px; border-radius:50%; background:#c62828; flex-shrink:0;"></div>
+        <span>Red marker = current price (SAR 14.82)</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Sensitivity table -->
+  <div class="card">
+    <div class="card-title">DDM Sensitivity: Fair Value per Share (SAR) vs. Cost of Equity &amp; Terminal Growth Rate</div>
+    <table>
+      <tr>
+        <th>Ke \ g</th>
+        <th class="right">1.5%</th>
+        <th class="right">2.0%</th>
+        <th class="right" style="background:#f5a623; color:#1a1a2e;">2.5% (Base)</th>
+        <th class="right">3.0%</th>
+        <th class="right">3.5%</th>
+      </tr>
+      <tr>
+        <td>7.5%</td>
+        <td class="right">16.6</td><td class="right">17.6</td>
+        <td class="right" style="background:#fdf6e3;">18.8</td>
+        <td class="right">20.3</td><td class="right">22.3</td>
+      </tr>
+      <tr>
+        <td>8.0%</td>
+        <td class="right">15.2</td><td class="right">16.0</td>
+        <td class="right" style="background:#fdf6e3;">17.0</td>
+        <td class="right">18.2</td><td class="right">19.7</td>
+      </tr>
+      <tr>
+        <td style="font-weight:700; color:#0a1f5c;">9.0% (Base)</td>
+        <td class="right">13.0</td><td class="right">13.7</td>
+        <td class="right" style="background:#fdf6e3; font-weight:700; color:#0a1f5c;">15.3</td>
+        <td class="right">16.1</td><td class="right">17.1</td>
+      </tr>
+      <tr>
+        <td>9.5%</td>
+        <td class="right">12.2</td><td class="right">12.8</td>
+        <td class="right" style="background:#fdf6e3;">13.5</td>
+        <td class="right">14.3</td><td class="right">15.2</td>
+      </tr>
+      <tr>
+        <td>10.0%</td>
+        <td class="right">11.5</td><td class="right">12.1</td>
+        <td class="right" style="background:#fdf6e3;">12.7</td>
+        <td class="right">13.4</td><td class="right">14.2</td>
+      </tr>
+    </table>
+    <div style="font-size:7pt; color:#718096; margin-top:5px;">Note: Sensitivity values are indicative and derived from the DDM framework. Shaded column = base-case terminal growth assumption.</div>
+  </div>
+</div>
+
+<!-- ─── 6. INVESTMENT CATALYSTS ─── -->
+<div class="section">
+  <div class="section-title">6. Investment Catalysts</div>
+  <div class="col-2">
+    <div class="card-green">
+      <div class="card-title">Upside Catalysts (Ranked by Importance)</div>
+      <div class="cat-item">
+        <div class="cat-dot high"></div>
+        <div>
+          <div class="cat-title">Strong smartphone &amp; electronics cycle</div>
+          <div class="cat-desc">Continued upgrade cycles in smartphones (especially Apple and Samsung) directly drive Jarir's largest revenue segment, boosting both topline and gross profit.</div>
+        </div>
+      </div>
+      <div class="cat-item">
+        <div class="cat-dot high"></div>
+        <div>
+          <div class="cat-title">Branch network expansion</div>
+          <div class="cat-desc">Opening 5 new stores in 2026 and 3/year thereafter (base case) adds predictable revenue. Average revenue per store is ~SAR 150M — each new store adds meaningful scale.</div>
+        </div>
+      </div>
+      <div class="cat-item">
+        <div class="cat-dot med"></div>
+        <div>
+          <div class="cat-title">Back-to-school and seasonal demand</div>
+          <div class="cat-desc">Saudi Arabia's young demographics (median age ~29) sustain strong back-to-school spending, which is a recurring seasonal catalyst for Jarir's stationery and electronics segments.</div>
+        </div>
+      </div>
+      <div class="cat-item">
+        <div class="cat-dot med"></div>
+        <div>
+          <div class="cat-title">E-commerce growth</div>
+          <div class="cat-desc">Jarir's upgraded app and online platform provide a low-cost additional sales channel, potentially improving margins and expanding reach beyond physical stores.</div>
+        </div>
+      </div>
+      <div class="cat-item">
+        <div class="cat-dot low"></div>
+        <div>
+          <div class="cat-title">Attractive, stable dividend</div>
+          <div class="cat-desc">A ~7% dividend yield supports the floor on the stock price. If interest rates fall, dividend-paying equities like Jarir become relatively more attractive to investors.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Revenue forecast visual -->
+    <div class="card">
+      <div class="card-title">Revenue Forecast – Base Case (SAR M)</div>
+      <div style="display:flex; gap:12px; margin-bottom:6px; font-size:7pt; color:#4a5568;">
+        <span><span style="display:inline-block;width:10px;height:10px;background:#0a1f5c;border-radius:2px;"></span> Best</span>
+        <span><span style="display:inline-block;width:10px;height:10px;background:#4a7fc1;border-radius:2px;"></span> Base</span>
+        <span><span style="display:inline-block;width:10px;height:10px;background:#a8caed;border-radius:2px;"></span> Worst</span>
+      </div>
+      <div class="chart-wrap" style="height:160px;">
+        <canvas id="forecastChart" role="img" aria-label="Line chart of revenue forecast under best, base, and worst case scenarios from 2026 to 2030">Best case: 15,188M by 2030. Base case: 13,973M. Worst case: 12,758M.</canvas>
+      </div>
+      <div style="margin-top:8px; font-size:7.5pt; color:#4a5568; line-height:1.5;">
+        Base case assumes <strong>3 new branches/year</strong> after 2026 and stable average revenue per store (~SAR 152M). The spread between scenarios reflects execution risk in branch roll-out and per-store productivity.
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ─── 7. KEY RISKS ─── -->
+<div class="section">
+  <div class="section-title">7. Key Risks</div>
+  <div class="col-2">
+    <div class="card-red">
+      <div class="card-title">Key Downside Risks</div>
+      <div class="cat-item">
+        <div class="cat-dot risk-h"></div>
+        <div>
+          <div class="cat-title">Intensifying competition (High)</div>
+          <div class="cat-desc">The launch of official Apple Stores in Saudi Arabia is a structural threat, given Apple products represent ~20–25% of Jarir's sales. Rising online platforms (Amazon.sa, Noon) also intensify competition, forcing Jarir to offer promotions that compress margins.</div>
+        </div>
+      </div>
+      <div class="cat-item">
+        <div class="cat-dot risk-h"></div>
+        <div>
+          <div class="cat-title">Margin pressure (High)</div>
+          <div class="cat-desc">Gross margins have declined ~288 bps over the past 5 years to ~12.5%. If promotional activity intensifies or product mix shifts toward lower-margin items, this trend could continue, compressing earnings even on higher revenues.</div>
+        </div>
+      </div>
+      <div class="cat-item">
+        <div class="cat-dot risk-m"></div>
+        <div>
+          <div class="cat-title">Consumer spending slowdown (Medium)</div>
+          <div class="cat-desc">As a discretionary retailer, Jarir is exposed to changes in consumer confidence. If oil prices weaken significantly or government employment slows, discretionary spending could disappoint, weighing on revenue growth.</div>
+        </div>
+      </div>
+      <div class="cat-item">
+        <div class="cat-dot risk-m"></div>
+        <div>
+          <div class="cat-title">Inventory &amp; import cost risk (Medium)</div>
+          <div class="cat-desc">Jarir holds significant finished goods inventory (SAR 1.85B in 2025). Currency volatility or supply chain disruptions could inflate import costs or trigger inventory write-downs, particularly for electronics.</div>
+        </div>
+      </div>
+      <div class="cat-item">
+        <div class="cat-dot risk-l"></div>
+        <div>
+          <div class="cat-title">Dividend sustainability (Low–Medium)</div>
+          <div class="cat-desc">A payout ratio consistently above 100% means dividends are partially funded from cash reserves. While FCF is strong, any earnings shortfall could put pressure on the dividend — a key reason investors hold the stock.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Risk matrix -->
+    <div class="card">
+      <div class="card-title">Risk Matrix</div>
+      <div class="chart-wrap" style="height:220px;">
+        <canvas id="riskChart" role="img" aria-label="Bubble chart showing risks plotted by likelihood on x-axis and impact on y-axis">Five risks plotted: competition is high likelihood and high impact, margin pressure is medium-high likelihood and high impact, consumer slowdown is medium likelihood and medium impact, inventory risk is low-medium likelihood and medium impact, dividend risk is low likelihood and medium impact.</canvas>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ─── 8. CONCLUSION ─── -->
+<div class="section">
+  <div class="section-title">8. Conclusion</div>
+  <div class="conclusion-box">
+    <div style="display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:10px;">
+      <div>
+        <div style="font-size:9pt; font-weight:700; color:#a8c4e8; text-transform:uppercase; letter-spacing:1px;">Final Recommendation</div>
+        <div style="font-size:20pt; font-weight:700; color:#f5a623; letter-spacing:2px;">HOLD</div>
+      </div>
+      <div style="text-align:right;">
+        <div style="font-size:8pt; color:#a8c4e8;">Target Price &nbsp;·&nbsp; <strong style="color:#fff; font-size:12pt;">SAR 15.10</strong></div>
+        <div style="font-size:8pt; color:#a8c4e8; margin-top:4px;">Current Price &nbsp;·&nbsp; <strong style="color:#fff;">SAR 14.82</strong> &nbsp;·&nbsp; Upside <strong style="color:#5ee8a0;">+1.9%</strong></div>
+        <div style="font-size:8pt; color:#a8c4e8; margin-top:4px;">Dividend Yield (2025A) &nbsp;·&nbsp; <strong style="color:#5ee8a0;">6.96%</strong></div>
+      </div>
+    </div>
+    <p>
+      Jarir Marketing Company is a <strong>high-quality, income-generating business</strong> with a dominant retail franchise in Saudi Arabia, a debt-free balance sheet, and one of the most generous dividend yields on TASI. The company's financial profile is stable: revenues have grown at a CAGR of ~5.7% over 2021–2025, and free cash flow generation remains robust, fully supporting the dividend.
+    </p>
+    <p style="margin-top:6px;">
+      However, at the current price of <strong>SAR 14.82</strong>, our blended target of <strong>SAR 15.10</strong> implies only <strong>+1.9% capital upside</strong> — insufficient to justify a Buy rating on its own. Structural headwinds from intensifying competition (Apple Stores, Amazon) and sustained margin compression are key concerns. The total return, inclusive of the ~7% dividend yield, remains attractive for <strong>income-focused investors</strong>. We recommend a <strong>HOLD</strong> for existing shareholders and suggest accumulating on weakness below <strong>SAR 13.50</strong> for new investors seeking a better risk/reward entry point.
+    </p>
+  </div>
+</div>
+
+</div><!-- /content -->
+
+<!-- ─── FOOTER ─── -->
+<div class="footer">
+  <span>Jarir Marketing Co. (4190.SR) &nbsp;|&nbsp; Equity Research Report &nbsp;|&nbsp; May 2026</span>
+  <span>Valuation: DDM (70%) + Trading Comparables (30%) &nbsp;|&nbsp; Currency: SAR</span>
+</div>
+<div class="disclaimer">
+  This report is prepared for educational and academic purposes only and does not constitute investment advice. Financial data sourced from Argaam (as of April 27, 2026) and publicly available company filings. Market data from Saudi Exchange and investing.com. This report was produced as an undergraduate finance project and should not be relied upon for actual investment decisions. All figures in SAR unless otherwise stated.
+</div>
+
+</div><!-- /page -->
+
+<!-- ══════════════ CHARTS ══════════════ -->
+<script>
+const years = ['2021','2022','2023','2024','2025'];
+
+new Chart(document.getElementById('revChart'), {
+  type: 'bar',
+  data: {
+    labels: years,
+    datasets: [
+      {
+        label: 'Revenue',
+        data: [9088, 9392, 10595, 10619, 11365],
+        backgroundColor: '#0a1f5c',
+        borderRadius: 3,
+        yAxisID: 'y'
+      },
+      {
+        label: 'Net Income',
+        data: [992, 970, 973, 974, 1049],
+        backgroundColor: '#f5a623',
+        borderRadius: 3,
+        yAxisID: 'y'
+      }
+    ]
+  },
+  options: {
+    responsive: true,
+    maintainAspectRatio: false,
+    plugins: { legend: { display: false }, tooltip: { callbacks: { label: ctx => ctx.dataset.label + ': SAR ' + ctx.parsed.y.toLocaleString() + 'M' } } },
+    scales: {
+      x: { ticks: { font: { size: 9 } }, grid: { display: false } },
+      y: { ticks: { font: { size: 9 }, callback: v => (v/1000).toFixed(0) + 'B' }, grid: { color: '#f0f0f0' } }
+    }
+  }
+});
+
+new Chart(document.getElementById('marginChart'), {
+  type: 'line',
+  data: {
+    labels: years,
+    datasets: [
+      {
+        label: 'Gross Margin',
+        data: [13.5, 13.7, 12.0, 12.5, 12.5],
+        borderColor: '#0a1f5c',
+        backgroundColor: 'rgba(10,31,92,0.08)',
+        fill: true,
+        tension: 0.3,
+        pointRadius: 4,
+        pointBackgroundColor: '#0a1f5c'
+      },
+      {
+        label: 'Net Margin',
+        data: [10.9, 10.3, 9.2, 9.2, 9.2],
+        borderColor: '#f5a623',
+        borderDash: [5,3],
+        backgroundColor: 'rgba(0,0,0,0)',
+        tension: 0.3,
+        pointRadius: 4,
+        pointBackgroundColor: '#f5a623'
+      }
+    ]
+  },
+  options: {
+    responsive: true,
+    maintainAspectRatio: false,
+    plugins: { legend: { display: false }, tooltip: { callbacks: { label: ctx => ctx.dataset.label + ': ' + ctx.parsed.y.toFixed(1) + '%' } } },
+    scales: {
+      x: { ticks: { font: { size: 9 } }, grid: { display: false } },
+      y: { min: 7, max: 16, ticks: { font: { size: 9 }, callback: v => v + '%' }, grid: { color: '#f0f0f0' } }
+    }
+  }
+});
+
+new Chart(document.getElementById('dpsChart'), {
+  type: 'bar',
+  data: {
+    labels: years,
+    datasets: [
+      {
+        type: 'bar',
+        label: 'DPS',
+        data: [0.75, 0.80, 0.84, 0.83, 0.89],
+        backgroundColor: '#0a1f5c',
+        borderRadius: 3,
+        yAxisID: 'y'
+      },
+      {
+        type: 'line',
+        label: 'Div Yield',
+        data: [3.8, 5.3, 5.4, 6.6, 7.0],
+        borderColor: '#5ee8a0',
+        backgroundColor: 'rgba(0,0,0,0)',
+        tension: 0.3,
+        pointRadius: 4,
+        pointBackgroundColor: '#5ee8a0',
+        yAxisID: 'y2'
+      }
+    ]
+  },
+  options: {
+    responsive: true,
+    maintainAspectRatio: false,
+    plugins: { legend: { display: false } },
+    scales: {
+      x: { ticks: { font: { size: 9 } }, grid: { display: false } },
+      y: { min: 0, max: 1.2, ticks: { font: { size: 9 }, callback: v => 'SAR ' + v.toFixed(2) }, grid: { color: '#f0f0f0' }, position: 'left' },
+      y2: { min: 0, max: 10, ticks: { font: { size: 9 }, callback: v => v + '%' }, grid: { display: false }, position: 'right' }
+    }
+  }
+});
+
+new Chart(document.getElementById('forecastChart'), {
+  type: 'line',
+  data: {
+    labels: ['2026E','2027E','2028E','2029E','2030E'],
+    datasets: [
+      { label: 'Best', data: [12151, 12910, 13670, 14429, 15188], borderColor: '#0a1f5c', backgroundColor: 'rgba(10,31,92,0.06)', fill: true, tension: 0.3, pointRadius: 3, borderWidth: 2 },
+      { label: 'Base', data: [12151, 12606, 13062, 13518, 13973], borderColor: '#4a7fc1', backgroundColor: 'rgba(74,127,193,0.06)', fill: true, tension: 0.3, pointRadius: 3, borderWidth: 2 },
+      { label: 'Worst', data: [12151, 12303, 12454, 12606, 12758], borderColor: '#a8caed', backgroundColor: 'rgba(168,202,237,0.06)', fill: true, tension: 0.3, pointRadius: 3, borderWidth: 2, borderDash: [4,3] }
+    ]
+  },
+  options: {
+    responsive: true,
+    maintainAspectRatio: false,
+    plugins: { legend: { display: false }, tooltip: { callbacks: { label: ctx => ctx.dataset.label + ': SAR ' + ctx.parsed.y.toLocaleString() + 'M' } } },
+    scales: {
+      x: { ticks: { font: { size: 9 } }, grid: { display: false } },
+      y: { min: 11000, ticks: { font: { size: 9 }, callback: v => (v/1000).toFixed(1) + 'B' }, grid: { color: '#f0f0f0' } }
+    }
+  }
+});
+
+new Chart(document.getElementById('riskChart'), {
+  type: 'bubble',
+  data: {
+    datasets: [
+      { label: 'Competition (Apple/Online)', data: [{ x: 4.2, y: 4.5, r: 12 }], backgroundColor: 'rgba(198,40,40,0.7)' },
+      { label: 'Margin Pressure', data: [{ x: 3.8, y: 4.2, r: 10 }], backgroundColor: 'rgba(239,108,0,0.7)' },
+      { label: 'Consumer Slowdown', data: [{ x: 2.8, y: 3.2, r: 9 }], backgroundColor: 'rgba(245,166,35,0.7)' },
+      { label: 'Inventory Risk', data: [{ x: 2.2, y: 2.8, r: 8 }], backgroundColor: 'rgba(74,127,193,0.7)' },
+      { label: 'Dividend Risk', data: [{ x: 1.8, y: 2.5, r: 7 }], backgroundColor: 'rgba(168,202,237,0.9)' }
+    ]
+  },
+  options: {
+    responsive: true,
+    maintainAspectRatio: false,
+    layout: { padding: 10 },
+    plugins: {
+      legend: { display: false },
+      tooltip: { callbacks: { label: ctx => ctx.dataset.label } }
+    },
+    scales: {
+      x: {
+        min: 1, max: 5,
+        title: { display: true, text: 'Likelihood →', font: { size: 9 } },
+        ticks: { font: { size: 9 }, callback: v => ['','Very Low','Low','Medium','High','Very High'][v] || '' },
+        grid: { color: '#f0f0f0' }
+      },
+      y: {
+        min: 1, max: 5,
+        title: { display: true, text: 'Impact →', font: { size: 9 } },
+        ticks: { font: { size: 9 }, callback: v => ['','Negligible','Low','Medium','High','Critical'][v] || '' },
+        grid: { color: '#f0f0f0' }
+      }
+    }
+  }
+});
+</script>
+</body>
+</html>
